@@ -30,15 +30,13 @@ var holiday = ['anniversary', 'birthday', 'house warming', 'wedding']
 var relationship = ['cousin', 'father', 'friend', 'sister']
 var dayOfWeek = ['Wednesday', 'Thursday', 'Friday', 'Saturday']
 
-people.forEach(addAllProperties)
-
-function addAllProperties (lastName, state, holiday, relationship, dayOfWeek) {
+for (var b = 0; b < people.length; b++) {
   for (var i = 0; i < lastName.length; i++) {
     for (var j = 0; j < state.length; j++) {
       for (var k = 0; k < holiday.length; k++) {
         for (var m = 0; m < relationship.length; m++) {
           for (var n = 0; n < dayOfWeek.length; n++) {
-            people.push({
+            people[b].push({
               lastName: lastName[i],
               state: state[j],
               holiday: holiday[k],
