@@ -3,50 +3,38 @@
 // be modified to give the person's name, relationship to Greg, event he/she celebrated, and the state of residence.
 
 // Four people objects with six keys:
-var lastNameArr = ['Bartley', 'DeForest', 'Fairview', 'Gray']
-var stateArr = ['Ohio', 'Montana', 'Texas', 'Washington']
-var holidayArr = ['anniversary', 'birthday', 'house warming', 'wedding']
-var relationshipArr = ['cousin', 'father', 'friend', 'sister']
+var firstNamesArr = ['Ellen', 'Heather', 'Rick', 'Walter']
+var lastNamesArr = ['Bartley', 'DeForest', 'Fairview', 'Gray']
+var statesArr = ['Ohio', 'Montana', 'Texas', 'Washington']
+var holidaysArr = ['anniversary', 'birthday', 'house warming', 'wedding']
+var relationshipsArr = ['cousin', 'father', 'friend', 'sister']
 var dayOfWeekArr = ['Wednesday', 'Thursday', 'Friday', 'Saturday']
+var heOrSheArr = ['he', 'she']
 
-var ellen = {
-  firstName: 'Ellen',
-  lastName: lastNameArr,
-  holiday: holidayArr,
-  relationship: relationshipArr,
-  dayOfWeek: dayOfWeekArr,
-  state: stateArr,
-  heOrShe: 'she'
-}
-var heather = {
-  firstName: 'Heather',
-  lastName: lastNameArr,
-  holiday: holidayArr,
-  relationship: relationshipArr,
-  dayOfWeek: dayOfWeekArr,
-  state: stateArr,
-  heOrShe: 'she'
-}
-var rick = {
-  firstName: 'Rick',
-  lastName: lastNameArr,
-  holiday: holidayArr,
-  relationship: relationshipArr,
-  dayOfWeek: dayOfWeekArr,
-  state: stateArr,
-  heOrShe: 'he'
-}
-var walter = {
-  firstName: 'Walter',
-  lastName: lastNameArr,
-  holiday: holidayArr,
-  relationship: relationshipArr,
-  dayOfWeek: dayOfWeekArr,
-  state: stateArr,
-  heOrShe: 'he'
+// create objects for all combinations:
+var people = []
+for (var i = 0; i < firstNamesArr.length; i++) {
+  for (var j = 0; j < lastNamesArr.length; j++) {
+    for (var k = 0; k < statesArr.length; k++) {
+      for (var l = 0; l < holidaysArr.length; l++) {
+        for (var m = 0; m < relationshipsArr.length; m++) {
+          for (var n = 0; n < dayOfWeekArr.length; n++) {
+            for (var p = 0; p < heOrSheArr.length; p++) {
+              people.push({
+                firstName: firstNamesArr[i],
+                lastName: lastNamesArr[j],
+                state: statesArr[k],
+                holiday: holidaysArr[l],
+                relationship: relationshipsArr[m],
+                dayOfWeek: dayOfWeekArr[n],
+                heOrShe: heOrSheArr[p]
+              })
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-// Place the object above into a 'people' array
-var people = [ellen, heather, rick, walter]
-
-console.log(people)
+console.log(people.length)
