@@ -3,51 +3,50 @@
 // be modified to give the person's name, relationship to Greg, event he/she celebrated, and the state of residence.
 
 // Four people objects with six keys:
+var lastNameArr = ['Bartley', 'DeForest', 'Fairview', 'Gray']
+var stateArr = ['Ohio', 'Montana', 'Texas', 'Washington']
+var holidayArr = ['anniversary', 'birthday', 'house warming', 'wedding']
+var relationshipArr = ['cousin', 'father', 'friend', 'sister']
+var dayOfWeekArr = ['Wednesday', 'Thursday', 'Friday', 'Saturday']
+
 var ellen = {
   firstName: 'Ellen',
+  lastName: lastNameArr,
+  holiday: holidayArr,
+  relationship: relationshipArr,
+  dayOfWeek: dayOfWeekArr,
+  state: stateArr,
   heOrShe: 'she'
 }
 var heather = {
   firstName: 'Heather',
+  lastName: lastNameArr,
+  holiday: holidayArr,
+  relationship: relationshipArr,
+  dayOfWeek: dayOfWeekArr,
+  state: stateArr,
   heOrShe: 'she'
 }
 var rick = {
   firstName: 'Rick',
+  lastName: lastNameArr,
+  holiday: holidayArr,
+  relationship: relationshipArr,
+  dayOfWeek: dayOfWeekArr,
+  state: stateArr,
   heOrShe: 'he'
 }
 var walter = {
   firstName: 'Walter',
+  lastName: lastNameArr,
+  holiday: holidayArr,
+  relationship: relationshipArr,
+  dayOfWeek: dayOfWeekArr,
+  state: stateArr,
   heOrShe: 'he'
 }
 
 // Place the object above into a 'people' array
 var people = [ellen, heather, rick, walter]
-
-// arrays of possible values for the four objects
-var lastName = ['Bartley', 'DeForest', 'Fairview', 'Gray']
-var state = ['Ohio', 'Montana', 'Texas', 'Washington']
-var holiday = ['anniversary', 'birthday', 'house warming', 'wedding']
-var relationship = ['cousin', 'father', 'friend', 'sister']
-var dayOfWeek = ['Wednesday', 'Thursday', 'Friday', 'Saturday']
-
-for (var b = 0; b < people.length; b++) {
-  for (var i = 0; i < lastName.length; i++) {
-    for (var j = 0; j < state.length; j++) {
-      for (var k = 0; k < holiday.length; k++) {
-        for (var m = 0; m < relationship.length; m++) {
-          for (var n = 0; n < dayOfWeek.length; n++) {
-            people[b].push({
-              lastName: lastName[i],
-              state: state[j],
-              holiday: holiday[k],
-              relationship: relationship[m],
-              dayOfWeek: dayOfWeek[n]
-            })
-          }
-        }
-      }
-    }
-  }
-}
 
 console.log(people)
