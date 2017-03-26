@@ -143,10 +143,10 @@ function finalOutput (arr) {
       var outputStr = arr[i].firstName + ' ' + arr[i].lastName + ' lives in ' + arr[i].state + ' and is Greg\'s ' +
       arr[i].relationship + '. ' + arr[i].heOrShe[0].toUpperCase() + arr[i].heOrShe.substring(1) + ' had '
       var checkVowel = 'aeiou'
-      if (checkVowel.search(arr[i].holiday[0].toLowerCase())) {
-        outputStr += 'a '
-      } else {
+      if (checkVowel.search(arr[i].holiday[0].toLowerCase()) !== -1) {
         outputStr += 'an '
+      } else {
+        outputStr += 'a '
       }
       outputStr += arr[i].holiday + ' on ' + arr[i].dayOfWeek + '.'
       console.log(outputStr)
