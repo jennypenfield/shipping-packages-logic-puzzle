@@ -6,7 +6,7 @@
 var firstNamesArr = ['Ellen', 'Heather', 'Rick', 'Walter']
 var lastNamesArr = ['Bartley', 'DeForest', 'Fairview', 'Gray']
 var statesArr = ['Ohio', 'Montana', 'Texas', 'Washington']
-var holidaysArr = ['anniversary', 'birthday', 'house warming', 'wedding']
+var holidaysArr = ['anniversary', 'birthday', 'housewarming', 'wedding']
 var relationshipsArr = ['cousin', 'father', 'friend', 'sister']
 var dayOfWeekArr = ['Wednesday', 'Thursday', 'Friday', 'Saturday']
 var heOrSheArr = ['he', 'she']
@@ -37,15 +37,20 @@ for (var i = 0; i < firstNamesArr.length; i++) {
   }
 }
 
-console.log(finalOutput(people).length)
-console.log(people.length)
+finalOutput(people)
 
 // Clue #1: Greg's friend wasn't Ellen Fairview, who didn't live in Ohio. The birthday girl didn't have her party on Friday.
 function isThePerson (arr) {
+  // Remove obvious based on name and relationship given:
   if (arr.firstName === 'Ellen' && arr.heOrShe === 'he') return false
   if (arr.firstName === 'Heather' && arr.heOrShe === 'he') return false
   if (arr.firstName === 'Rick' && arr.heOrShe === 'she') return false
   if (arr.firstName === 'Walter' && arr.heOrShe === 'she') return false
+  if (arr.firstName === 'Ellen' && arr.relationship === 'father') return false
+  if (arr.firstName === 'Heather' && arr.relationship === 'father') return false
+  if (arr.firstName === 'Walter' && arr.relationship === 'sister') return false
+  if (arr.firstName === 'Rick' && arr.relationship === 'sister') return false
+  // *************************************************************************
   if (arr.relationship === 'friend' && arr.firstName === 'Ellen') return false
   if (arr.firstName === 'Ellen' && arr.lastName !== 'Fairview') return false
   if (arr.firstName !== 'Ellen' && arr.lastName === 'Fairview') return false
@@ -91,15 +96,60 @@ function isThePerson (arr) {
   if (arr.lastName === 'DeForest' && arr.dayOfWeek === 'Wednesday') return false
   if (arr.lastName === 'DeForest' && arr.dayOfWeek === 'Thursday') return false
 
+  // Determinations from above clues (all of the following may not be necessary to achieve the result, but they are shown for clarity).
+  // We know Ellen is not the friend (Clue #1), not the father, and not the sister (Clue #5). Therefore, Ellen is the cousin.
+  if (arr.firstName === 'Ellen' && arr.relationship !== 'cousin') return false
+  if (arr.firstName !== 'Ellen' && arr.relationship === 'cousin') return false
+  // Clue #5 states that the wedding was for Greg's cousin. Therefore, Ellen's event is the wedding.
+  if (arr.firstName === 'Ellen' && arr.holiday !== 'wedding') return false
+  if (arr.firstName !== 'Ellen' && arr.holiday === 'wedding') return false
+  // Clue #1 states 'birthday girl,' so the birthday has to be either Ellen's or Heather's. Since above determined
+  // Ellen had the wedding, then Heather had the birthday.
+  if (arr.firstName === 'Heather' && arr.holiday !== 'birthday') return false
+  if (arr.firstName !== 'Heather' && arr.holiday === 'birthday') return false
+  // Since Heather's event did not take place Saturday (Clue #2, Rick), Wednesday (Clue #5), or Friday (Clue #1, birthday girl):
+  // Therefore, Heather's event was on Thursday.
+  if (arr.firstName === 'Heather' && arr.dayOfWeek !== 'Thursday') return false
+  if (arr.firstName !== 'Heather' && arr.dayOfWeek === 'Thursday') return false
+  // Clue #5 states Walter's event was one day earlier than DeForest, so his event cannot be on Wednesday. Walter's event is on
+  // Friday.
+  if (arr.firstName === 'Walter' && arr.dayOfWeek !== 'Friday') return false
+  if (arr.firstName !== 'Walter' && arr.dayOfWeek === 'Friday') return false
+  // It follows that Rick's last name is DeForest since Clue #6 states Walter's event was one day earlier than DeForest.
+  if (arr.firstName === 'Rick' && arr.lastName !== 'DeForest') return false
+  if (arr.firstName !== 'Rick' && arr.lastName === 'DeForest') return false
+  // It follows that Walter's last name is Gray
+  if (arr.firstName === 'Walter' && arr.lastName !== 'Gray') return false
+  if (arr.firstName !== 'Walter' && arr.lastName === 'Gray') return false
+  // It follows that Walter Gray is the father (Clue #3 states father's last name was Gray).
+  if (arr.firstName === 'Walter' && arr.relationship !== 'father') return false
+  if (arr.firstName !== 'Walter' && arr.relationship === 'father') return false
+  // The anniversary was in Montana (Clue #6) and Walter's event was the anniversary.
+  if (arr.holiday === 'anniversary' && arr.state !== 'Montana') return false
+  if (arr.holiday !== 'anniversary' && arr.state === 'Montana') return false
+  // Therefore, Heather's event was in Ohio.
+  if (arr.firstName === 'Heather' && arr.state !== 'Ohio') return false
+  if (arr.firstName !== 'Heather' && arr.state === 'Ohio') return false
+  // Therefore, Rick's housewarming took place in Texas.
+  if (arr.firstName === 'Rick' && arr.state !== 'Texas') return false
+  if (arr.firstName !== 'Rick' && arr.state === 'Texas') return false
+
   return true
 }
 
 function finalOutput (arr) {
-  var outputArr = []
   for (var i = 0; i < arr.length; i++) {
     if (isThePerson(arr[i])) {
-      outputArr.push(arr[i])
+      var outputStr = arr[i].firstName + ' ' + arr[i].lastName + ' lives in ' + arr[i].state + ' and is Greg\'s ' +
+      arr[i].relationship + '. ' + arr[i].heOrShe[0].toUpperCase() + arr[i].heOrShe.substring(1) + ' had '
+      var checkVowel = 'aeiou'
+      if (checkVowel.search(arr[i].holiday[0].toLowerCase())) {
+        outputStr += 'a '
+      } else {
+        outputStr += 'an '
+      }
+      outputStr += arr[i].holiday + ' on ' + arr[i].dayOfWeek + '.'
+      console.log(outputStr)
     }
   }
-  return outputArr
 }
