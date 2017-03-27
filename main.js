@@ -37,7 +37,7 @@ for (var i = 0; i < firstNamesArr.length; i++) {
   }
 }
 
-finalOutput(people)
+getAnswers(people)
 
 // Clue #1: Greg's friend wasn't Ellen Fairview, who didn't live in Ohio. The birthday girl didn't have her party on Friday.
 function isThePerson (arr) {
@@ -137,19 +137,27 @@ function isThePerson (arr) {
   return true
 }
 
-function finalOutput (arr) {
+function getAnswers (arr) {
+  var outputArr = []
   for (var i = 0; i < arr.length; i++) {
     if (isThePerson(arr[i])) {
-      var outputStr = arr[i].firstName + ' ' + arr[i].lastName + ' lives in ' + arr[i].state + ' and is Greg\'s ' +
-      arr[i].relationship + '. ' + arr[i].heOrShe[0].toUpperCase() + arr[i].heOrShe.substring(1) + ' had '
-      var checkVowel = 'aeiou'
-      if (checkVowel.search(arr[i].holiday[0].toLowerCase()) !== -1) {
-        outputStr += 'an '
-      } else {
-        outputStr += 'a '
-      }
-      outputStr += arr[i].holiday + ' on ' + arr[i].dayOfWeek + '.'
-      console.log(outputStr)
+      outputArr.push(arr[i])
     }
+  }
+  printAnswers(outputArr)
+}
+
+function printAnswers (arr) {
+  for (var i = 0; i < arr.length; i++) {
+    var outputStr = arr[i].firstName + ' ' + arr[i].lastName + ' lives in ' + arr[i].state + ' and is Greg\'s ' +
+    arr[i].relationship + '. ' + arr[i].heOrShe[0].toUpperCase() + arr[i].heOrShe.substring(1) + ' had '
+    var checkVowel = 'aeiou'
+    if (checkVowel.search(arr[i].holiday[0].toLowerCase()) !== -1) {
+      outputStr += 'an '
+    } else {
+      outputStr += 'a '
+    }
+    outputStr += arr[i].holiday + ' on ' + arr[i].dayOfWeek + '.'
+    console.log(outputStr)
   }
 }
